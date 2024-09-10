@@ -39,12 +39,12 @@ def _prepare_test(st_half_size, nd_half_size):
 
 
 if __name__ == '__main__':
-    for i in range(1, 5):
-        for j in range(0, 2):
+    for i in range(1, 10):
+        for j in range(1, -1, -1):
             merge = Merge(_prepare_test(i, i - j))
             merge.calculate()
             # In case of even length input it's okay for the last element not to be processed.
             for k in range(1, len(merge.debug)):
                 if j != 0 and k != len(merge.debug) -1 and not merge.debug[k]:
-                    print("ERROR: Something was not processed at index {}".format(k))
+                    print("ERROR: Index was not processed: {}".format(k))
             print("---")
