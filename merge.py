@@ -45,6 +45,8 @@ if __name__ == '__main__':
             merge.calculate()
             # In case of even length input it's okay for the last element not to be processed.
             for k in range(1, len(merge.debug)):
-                if j != 0 and k != len(merge.debug) -1 and not merge.debug[k]:
+                if j == 0 and k == len(merge.debug) -1:
+                    pass
+                elif not merge.debug[k]:
                     print("ERROR: Index was not processed: {}".format(k))
             print("---")
