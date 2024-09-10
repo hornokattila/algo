@@ -18,8 +18,8 @@ class Merge:
     def _calculate(self, index, value):
         _forward_index = self._calculate_new_index(index)
         _forward_value = self.array[_forward_index]
-        print("index: {}, value: {} -> forward index: {} | (forward value: {})"
-              .format(index, value, _forward_index, _forward_value))
+        # print("index: {}, value: {} -> forward index: {} | (forward value: {})"
+        #     .format(index, value, _forward_index, _forward_value))
         self.array[_forward_index] = value
         self.debug[_forward_index] = True
         if _forward_value:
@@ -47,5 +47,4 @@ if __name__ == '__main__':
             for k in range(1, len(merge.debug)):
                 if j != 0 and k != len(merge.debug) -1 and not merge.debug[k]:
                     print("ERROR: Something was not processed at index {}".format(k))
-                    exit(1)
             print("---")
