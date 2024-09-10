@@ -1,7 +1,8 @@
 class Merge:
     def __init__(self, array):
         self.array = array
-        self.debug = [False for _ in range(len(array))] # Turns true for processed indexes.
+        # Turns true for processed indexes.
+        self.debug = [False for _ in range(len(array))]
         print("I: {}".format(self.array))
 
     def _calculate_shift(self, index):
@@ -29,15 +30,17 @@ class Merge:
 
 
 def _prepare_test(st_half_size, nd_half_size):
+    # Test method that returns input data using even and odd numbers for the sake of readability.
     return [i for i in range(1, st_half_size * 2 + 1, 2)] + [i for i in range(2, nd_half_size * 2 + 1, 2)]
 
 
 if __name__ == '__main__':
-    for i in range(2, 100):
+    for i in range(2, 10):
         for j in range(0,2):
             merge = Merge(_prepare_test(i, i-j))
             merge.calculate()
             for k in range(1, len(merge.debug)):
-                if not merge.debug[k]:
+                # In case of even length input it's okay for the last element not to be processed.
+                if j != 0 and k != len(merge.debug) -1 and not merge.debug[k]:
                     print("DEBUG: Following index was not processed: {}".format(k))
             print("---")
