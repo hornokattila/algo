@@ -33,20 +33,20 @@ class Merge:
         print("O: {}".format(self.array))
 
 
-def _prepare_test(st_half_size, nd_half_size):
+def _prepare_test(limit):
     # Test method that returns input data using even and odd numbers for the sake of readability.
-    return [i for i in range(1, st_half_size * 2 + 1, 2)] + [i for i in range(2, nd_half_size * 2 + 1, 2)]
+    array = [i +1 for i in range(limit)]
+    return [*array[::2], *array[1::2]]
 
 
 if __name__ == '__main__':
-    for i in range(1, 10):
-        for j in range(1, -1, -1):
-            merge = Merge(_prepare_test(i, i - j))
-            merge.calculate()
-            # In case of even length input it's okay for the last element not to be processed.
-            for k in range(1, len(merge.debug)):
-                if j == 0 and k == len(merge.debug) -1:
-                    pass
-                elif not merge.debug[k]:
-                    print("ERROR: Index was not processed: {}".format(k))
-            print("---")
+    for i in range(0, 10):
+        merge = Merge(_prepare_test(i))
+        merge.calculate()
+        # In case of even length input it's okay for the last element not to be processed.
+        for k in range(1, len(merge.debug)):
+            if i % 2 == 0 and k == len(merge.debug) - 1:
+                pass
+            elif not merge.debug[k]:
+                print("ERROR: Number was not put into place: {}".format(merge.array[k]))
+        print("---")
