@@ -15,7 +15,7 @@ class Merge:
     def _calculate_new_index(self, index):
         return index + self._calculate_shift(index)
 
-    def _sort(self, index, value):
+    def _merge(self, index, value):
         _forward_index = self._calculate_new_index(index)
         _forward_value = self.array[_forward_index]
         # print("index: {}, value: {} -> forward index: {} | (forward value: {})"
@@ -23,13 +23,13 @@ class Merge:
         self.array[_forward_index] = value
         self.debug[_forward_index] = True
         if _forward_value:
-            self._sort(_forward_index, _forward_value)
+            self._merge(_forward_index, _forward_value)
 
     def run(self):
         if len(merge.array) > 2:
             value = self.array[1]
             self.array[1] = None
-            self._sort(1, value)
+            self._merge(1, value)
         print("O: {}".format(self.array))
 
 
